@@ -1,0 +1,29 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+a{
+    text-decoration: none;
+}
+.fll{
+    float: left;
+}
+.flr{
+    float: right;
+}
+.clearfix{
+    &::after{
+        display: block;
+        content: '';
+        clear: both;
+        overflow: hidden;
+    }
+}
+.mb30{
+    margin-bottom: 30px;
+}
+.avatar-item{
+    width: 80px;
+    height: 80px;
+    display: block;
+}
