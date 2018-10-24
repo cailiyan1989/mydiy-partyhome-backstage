@@ -51,8 +51,8 @@ import axios from 'axios'
     }
 </script>
 
-<style scoped>
-.avatar-uploader .el-upload {
+<style scoped lang='scss'>
+.avatar-uploader /deep/.el-upload {
     border: 1px dashed #d9d9d9;
     border-radius: 6px;
     cursor: pointer;

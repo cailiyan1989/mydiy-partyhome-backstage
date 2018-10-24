@@ -8,6 +8,8 @@ const components = {
   home:() => import('@/views/home'),
   userlist:() => import('@/views/admin/userlist'),
   adduser:() => import('@/views/admin/adduser'),
+  newslist:() => import('@/views/news/newslist'),
+  addnews:() => import('@/views/news/addnews'),
 }
 
 const router = new Router({
@@ -28,25 +30,46 @@ const router = new Router({
       children:[
         {
           path:'home', //前面不要加/
-          metta:{
+          meta:{
             title:'首页'
           },
           component: components.home
         },
         {
           path:'userlist', 
-          metta:{
+          meta:{
             title:'管理员列表'
           },
           component: components.userlist
         },
         {
           path:'adduser', 
-          metta:{
+          meta:{
             title:'添加管理员'
           },
           component: components.adduser
-        }
+        },
+        {
+          path:'reviseuser/:id', 
+          meta:{
+            title:'修改管理员'
+          },
+          component: components.adduser
+        },
+        {
+          path:'newslist',
+          meta:{
+            title:'新闻列表页'
+          },
+          component: components.newslist
+        },
+        {
+          path:'addnews', 
+          meta:{
+            title:'添加新闻页'
+          },
+          component: components.addnews
+        },
       ]
     }
   ]

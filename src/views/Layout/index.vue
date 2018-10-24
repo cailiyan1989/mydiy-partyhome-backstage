@@ -1,8 +1,8 @@
 <template>
     <div>
         <el-row>
-            <el-col :span='4'><LeftNav /></el-col>
-            <el-col :span='20'>
+            <el-col style="height:100vh;" :span='4'><LeftNav /></el-col>
+            <el-col style="height:100vh; overflow-y:scroll" :span='20'>
                 <Hearder />
                 <router-view class="content"/>
             </el-col>
@@ -26,5 +26,6 @@ import LeftNav from '@/components/LeftNav'
 <style scoped lang='scss'>
 /deep/ .content{
     padding: 30px;
+    margin-top: 56px;
 }
 </style>

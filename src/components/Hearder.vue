@@ -4,7 +4,7 @@
 
             <el-dropdown class="dropdown" @command="handleCommand">
             <span class="el-dropdown-link">
-                下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
+                我的状态<i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item command=0>退出登录</el-dropdown-item>
@@ -43,12 +43,17 @@
 
 <style scoped lang='scss'>
 .hearder{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 83.333333333333333vw;
     height: 56px;
     line-height: 56px;
     text-align: center;
     font-size: 30px;
     color: #fff;
     background: #2d3a4b;
+    z-index: 955;
 }
 .dropdown{
     position: fixed;

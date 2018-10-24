@@ -1,0 +1,77 @@
+<template>
+    <div>
+        <el-breadcrumb separator="/" class="mb30">
+            <el-breadcrumb-item :to="{ path: '/layout/home' }">首页</el-breadcrumb-item>
+            <el-breadcrumb-item >新闻列表页</el-breadcrumb-item>
+        </el-breadcrumb>
+
+        <el-card>
+
+            <el-table :data="formData" stripe style="width: 100%" align="center">
+                <el-table-column prop="title" label="新闻标题" width="140" align="center"/>
+                <el-table-column prop="author.nicheng"  label="作者" width="140"  align="center"/>
+                <el-table-column label="新闻头图" width="120" align="center" >
+                    <template slot-scope="scope">
+                        <img :src="scope.row.img" class="avatar-item" alt="">
+                    </template>
+                </el-table-column>
+                <el-table-column  label="新闻内容" width="260" align="center">
+                    <template slot-scope="scope">
+                        <div class="content-ys" v-text="scope.row.contentText"></div>
+                    </template>
+                </el-table-column>
+                <el-table-column prop="author.type"  label="新闻类型" width="120"  align="center"/>
+                <el-table-column prop="author.look_num"  label="浏览量" width="80"  align="center"/>
+               
+                <el-table-column label="操作" width="180" align="center">
+                    <template slot-scope="scope">
+                        <el-button @click="handlelook(scope.row._id)" type="primary" size="small">编辑</el-button>
+                        <el-button @click="handledel(scope.row._id)" type="danger" size="small">删除</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+
+        </el-card>
+    </div>
+</template>
+
+<script>
+    export default {
+        data(){
+            return{
+                formData:[],
+                // count:''
+            }
+        },
+        methods:{
+            getData(){
+                this.$axios.get('/ddyj/news').then(res => {
+                    this.formData = res.data
+                    // this.count = res.count
+                })
+            },
+            handlelook(){
+                
+            },
+            handledel(){
+
+            }
+        },
+        created(){
+            this.getData()
+        }
+
+    }
+</script>
+
+<style scoped>
+.content-ys{
+    line-height: 1.5;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+</style>

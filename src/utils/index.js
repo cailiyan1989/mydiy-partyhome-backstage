@@ -41,6 +41,12 @@ const xhr ={
     },
     post(url,data,config){
         return this.fetch(url,data,config,'post')
+    },
+    delete(url,data,config){
+        return this.fetch(url,data,config,'delete')
+    },
+    put(url,data,config){
+        return this.fetch(url,data,config,'put')
     }
 }
 export const $axios = xhr

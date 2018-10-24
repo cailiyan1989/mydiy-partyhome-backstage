@@ -22,8 +22,14 @@ a{
 .mb30{
     margin-bottom: 30px;
 }
+// 全局图片的样式
 .avatar-item{
     width: 80px;
     height: 80px;
+    margin: 0 auto;
     display: block;
+}
+// 全局 el-card 样式
+.content .el-card{
+    min-height: calc( 100vh - 200px )
 }
