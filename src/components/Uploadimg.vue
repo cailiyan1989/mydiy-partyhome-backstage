@@ -34,7 +34,6 @@ import axios from 'axios'
             getToken(){
                 axios.get('http://mawenli.xyz:3000/getToken').then(res =>{
                     this.imgtoken.token = res.data.data
-                    console.log(this.imgtoken)
                 })
             },
             

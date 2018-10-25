@@ -17,11 +17,11 @@
                 </el-table-column>
                 <el-table-column  label="新闻内容" width="260" align="center">
                     <template slot-scope="scope">
-                        <div class="content-ys" v-text="scope.row.contentText"></div>
+                        <div class="table-content-ys" v-text="scope.row.contentText"></div>
                     </template>
                 </el-table-column>
-                <el-table-column prop="author.type"  label="新闻类型" width="120"  align="center"/>
-                <el-table-column prop="author.look_num"  label="浏览量" width="80"  align="center"/>
+                <el-table-column prop="type.title"  label="新闻分类" width="120"  align="center"/>
+                <el-table-column prop="look_num"  label="浏览量" width="80"  align="center"/>
                
                 <el-table-column label="操作" width="180" align="center">
                     <template slot-scope="scope">
@@ -50,10 +50,24 @@
                     // this.count = res.count
                 })
             },
-            handlelook(){
-                
+            handlelook(id){
+                this.$router.push(`/layout/revisenews/${id}`)
             },
-            handledel(){
+            handledel(id){
+                this.$confirm('此操作将永久删除该新闻, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                    }).then(() => {
+                        this.$axios.delete(`/ddyj/news/${id}`).then( res => {
+                            if(res.code == 200){
+                                this.$message.success(res.msg);
+                                this.getData()
+                            }
+                        })
+                    }).catch(() => {
+                        this.$message.info('已取消删除');          
+                    });
 
             }
         },
@@ -65,13 +79,5 @@
 </script>
 
 <style scoped>
-.content-ys{
-    line-height: 1.5;
-    white-space: normal;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-}
+
 </style>

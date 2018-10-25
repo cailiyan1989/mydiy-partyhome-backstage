@@ -10,6 +10,10 @@ const components = {
   adduser:() => import('@/views/admin/adduser'),
   newslist:() => import('@/views/news/newslist'),
   addnews:() => import('@/views/news/addnews'),
+  catelist:() => import('@/views/category/catelist'),
+  addcate:() => import('@/views/category/addcate'),
+  swiperlist:() => import('@/views/swiper/swiperlist'),
+  addswiper:() => import('@/views/swiper/addswiper'),
 }
 
 const router = new Router({
@@ -69,6 +73,48 @@ const router = new Router({
             title:'添加新闻页'
           },
           component: components.addnews
+        },
+        {
+          path:'revisenews/:id', 
+          meta:{
+            title:'修改新闻页'
+          },
+          component: components.addnews
+        },
+        {
+          path:'catelist', 
+          meta:{
+            title:'分类列表页'
+          },
+          component: components.catelist
+        },
+        {
+          path:'addcate', 
+          meta:{
+            title:'添加分类页'
+          },
+          component: components.addcate
+        },
+        {
+          path:'revisecate/:id', 
+          meta:{
+            title:'修改分类页'
+          },
+          component: components.addcate
+        },
+        {
+          path:'swiperlist', 
+          meta:{
+            title:'轮播图列表页'
+          },
+          component: components.swiperlist
+        },
+        {
+          path:'addswiper', 
+          meta:{
+            title:'添加轮播图页'
+          },
+          component: components.addswiper
         },
       ]
     }

@@ -17,6 +17,16 @@
                 <router-link to="/layout/newslist"><el-menu-item index="/layout/newslist"> 新闻列表</el-menu-item></router-link>
                 <router-link to="/layout/addnews"><el-menu-item index="/layout/addnews"> 添加新闻</el-menu-item></router-link>
             </el-submenu>
+            <el-submenu index="category-manage">
+                <template slot="title"> 分类管理 </template>
+                <router-link to="/layout/catelist"><el-menu-item index="/layout/catelist"> 分类列表</el-menu-item></router-link>
+                <router-link to="/layout/addcate"><el-menu-item index="/layout/addcate"> 添加分类</el-menu-item></router-link>
+            </el-submenu>
+            <el-submenu index="swiper-manage">
+                <template slot="title"> 轮播图管理 </template>
+                <router-link to="/layout/swiperlist"><el-menu-item index="/layout/swiperlist"> 轮播图列表</el-menu-item></router-link>
+                <router-link to="/layout/addswiper"><el-menu-item index="/layout/addswiper"> 添加轮播图</el-menu-item></router-link>
+            </el-submenu>
         </el-menu>
 
     </div>

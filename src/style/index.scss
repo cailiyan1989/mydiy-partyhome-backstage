@@ -33,3 +33,22 @@ a{
 .content .el-card{
     min-height: calc( 100vh - 200px )
 }
+// table样式
+.table-ys{
+    width: 600px;
+    margin-left: 60px;
+}
+.el-submenu .el-menu-item{
+    min-width: 0;
+}
+
+// table下div字体控制
+.table-content-ys{
+    line-height: 1.5;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
