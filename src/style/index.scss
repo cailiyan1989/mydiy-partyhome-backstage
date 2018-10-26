@@ -31,7 +31,14 @@ a{
 }
 // 全局 el-card 样式
 .content .el-card{
-    min-height: calc( 100vh - 200px )
+    position: relative;
+    min-height: calc( 100vh - 170px );
+}
+// 全局 page 翻页样式
+.page-ys{
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
 }
 // table样式
 .table-ys{

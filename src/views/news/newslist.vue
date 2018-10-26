@@ -30,7 +30,15 @@
                     </template>
                 </el-table-column>
             </el-table>
-
+            
+            <el-pagination
+            background
+            class="page-ys"
+            layout="prev, pager, next"
+            @current-change="pageing"
+            :page-size="page.size"
+            :total="count">
+            </el-pagination>
         </el-card>
     </div>
 </template>
@@ -40,14 +48,22 @@
         data(){
             return{
                 formData:[],
-                // count:''
+                count:30,
+                page:{
+                    pn:1,
+                    size:4
+                }
             }
         },
         methods:{
+            pageing(pn){ //翻页
+                this.page.pn = pn
+                this.getData()
+            },
             getData(){
-                this.$axios.get('/ddyj/news').then(res => {
+                this.$axios.get('/ddyj/news',this.page).then(res => {
                     this.formData = res.data
-                    // this.count = res.count
+                    this.count = res.count
                 })
             },
             handlelook(id){

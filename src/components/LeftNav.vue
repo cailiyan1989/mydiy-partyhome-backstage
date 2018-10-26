@@ -1,12 +1,13 @@
 <template>
     <div class="left-nav">
         <el-menu
-        default-active="2"
+        :default-active="text"
         class="el-menu-vertical-demo"
         background-color="#2d3a4b"
         text-color="#fff"
+    
         active-text-color="#ffd04b">
-            <router-link to='/layout/home'><el-menu-item index="index"> 首页</el-menu-item></router-link>
+            <router-link to='/layout/home'><el-menu-item index="/layout/home"> 首页</el-menu-item></router-link>
             <el-submenu index="admin-manage">
                 <template slot="title"> 管理员管理 </template>
                 <router-link to="/layout/userlist"><el-menu-item index="/layout/userlist"> 管理员列表</el-menu-item></router-link>
@@ -33,9 +34,18 @@
 </template>
 
 <script>
-    export default {
-        
+export default {
+    data() {
+        return {
+            text: ''
+        }
+    },
+    watch: { 
+        $route(to, from){
+            this.text = to.path
+        }
     }
+}
 </script>
 
 <style scoped lang='scss'>

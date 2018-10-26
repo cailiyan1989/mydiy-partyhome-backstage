@@ -67,7 +67,14 @@ Quill.register('modules/ImageExtend', ImageExtend)
         components: {quillEditor,Uploadimg},
         data(){
             return{
-                formData:{},
+                formData:{
+                    title:'',
+                    content:'',
+                    contentText:'',
+                    author:'',
+                    type:'',
+                    img:''
+                },
                 users:[],
                 token:'',
                 category:'',
@@ -184,7 +191,7 @@ Quill.register('modules/ImageExtend', ImageExtend)
 </script>
 
 <style >
-.ql-container{
+.ql-editor{
     min-height: 200px;
 }
 </style>

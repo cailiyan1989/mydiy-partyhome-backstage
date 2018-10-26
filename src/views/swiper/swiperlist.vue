@@ -16,7 +16,7 @@
                 
                 <el-table-column prop="look_num"  label="是否显示" width="80"  align="center">
                     <template slot-scope="scope">
-                        {{scope.row.status == 1 ? '显示' : '不显示'}}
+                        {{scope.row.status ? '显示' : '不显示'}}
                     </template>
                 </el-table-column>
                 <el-table-column prop="sort" label="排序号" width="80" align="center"/>
@@ -34,6 +34,14 @@
                 </el-table-column>
             </el-table>
 
+            <el-pagination
+            background
+            class="page-ys"
+            layout="prev, pager, next"
+            @current-change="pageing"
+            :page-size="page.size"
+            :total="count">
+            </el-pagination>
         </el-card>
     </div>
 </template>
@@ -42,14 +50,46 @@
     export default {
         data(){
             return{
-                formData:[]
+                formData:[],
+                page:{
+                    pn:1,
+                    size:4
+                },
+                count:1,
             }
         },
         methods:{
+            pageing(pn){
+                this.page.pn = pn;
+                this.getData()
+            },
             getData(){
-                this.$axios.get(`/ddyj/swiper`).then(res => {
+                this.$axios.get(`/ddyj/swiper/all`,this.page).then(res => {
                     this.formData = res.data
+                    this.count = res.count
                 })
+            },
+            handlelook(id){
+                this.$router.push(`/layout/reviseswiper/${id}`)
+            },
+            handledel(id){
+                this.$confirm('此操作将永久删除该轮播图, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                    }).then(() => {
+                        this.$axios.delete(`/ddyj/swiper/${id}`).then( res => {
+                            if(res.code == 200){
+                                this.$message.success(res.msg);
+                                this.getData()
+                            }
+                            else{
+                                this.$message(res.msg)
+                            }
+                        })
+                    }).catch(() => {
+                        this.$message.info('已取消删除');          
+                    });
             }
         },
         created(){

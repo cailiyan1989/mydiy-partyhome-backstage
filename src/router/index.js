@@ -116,6 +116,13 @@ const router = new Router({
           },
           component: components.addswiper
         },
+        {
+          path:'reviseswiper/:id', 
+          meta:{
+            title:'修改轮播图页'
+          },
+          component: components.addswiper
+        },
       ]
     }
   ]
