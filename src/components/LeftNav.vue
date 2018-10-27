@@ -33,6 +33,10 @@
                 <router-link to="/layout/swiperlist"><el-menu-item index="/layout/swiperlist"> 轮播图列表</el-menu-item></router-link>
                 <router-link to="/layout/addswiper"><el-menu-item index="/layout/addswiper"> 添加轮播图</el-menu-item></router-link>
             </el-submenu>
+            <el-submenu index="topic-manage">
+                <template slot="title"> 主题管理 </template>
+                <router-link to="/layout/topiclist"><el-menu-item index="/layout/topiclist"> 主题列表</el-menu-item></router-link>
+            </el-submenu>
         </el-menu>
 
     </div>

@@ -16,6 +16,8 @@ const components = {
   addcate:() => import('@/views/category/addcate'),
   swiperlist:() => import('@/views/swiper/swiperlist'),
   addswiper:() => import('@/views/swiper/addswiper'),
+  topiclist:() => import('@/views/topic/topiclist'),
+  topicdetail:() => import('@/views/topic/topicdetail'),
 }
 
 const router = new Router({
@@ -147,6 +149,20 @@ const router = new Router({
             title:'修改轮播图页'
           },
           component: components.addswiper
+        },
+        {
+          path:'topiclist', 
+          meta:{
+            title:'主题列表页'
+          },
+          component: components.topiclist
+        },
+        {
+          path:'topicdetail/:id', 
+          meta:{
+            title:'主题详情页'
+          },
+          component: components.topicdetail
         },
       ]
     }
