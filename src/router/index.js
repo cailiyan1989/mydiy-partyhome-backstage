@@ -6,8 +6,10 @@ const components = {
   Layout:() => import('@/views/Layout'),
   Login:() => import('@/views/login'),
   home:() => import('@/views/home'),
-  userlist:() => import('@/views/admin/userlist'),
-  adduser:() => import('@/views/admin/adduser'),
+  adminlist:() => import('@/views/admin/adminlist'),
+  addadmin:() => import('@/views/admin/addadmin'),
+  userlist:() => import('@/views/user/userlist'),
+  adduser:() => import('@/views/user/adduser'),
   newslist:() => import('@/views/news/newslist'),
   addnews:() => import('@/views/news/addnews'),
   catelist:() => import('@/views/category/catelist'),
@@ -39,24 +41,47 @@ const router = new Router({
           },
           component: components.home
         },
+
+        {
+          path:'adminlist', 
+          meta:{
+            title:'管理员列表'
+          },
+          component: components.adminlist
+        },
+        {
+          path:'addadmin', 
+          meta:{
+            title:'添加管理员'
+          },
+          component: components.addadmin
+        },
+        {
+          path:'reviseadmin/:id', 
+          meta:{
+            title:'修改管理员'
+          },
+          component: components.addadmin
+        },
+        
         {
           path:'userlist', 
           meta:{
-            title:'管理员列表'
+            title:'普通用户列表'
           },
           component: components.userlist
         },
         {
           path:'adduser', 
           meta:{
-            title:'添加管理员'
+            title:'添加普通用户'
           },
           component: components.adduser
         },
         {
           path:'reviseuser/:id', 
           meta:{
-            title:'修改管理员'
+            title:'修改普通用户'
           },
           component: components.adduser
         },

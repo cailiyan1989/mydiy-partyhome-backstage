@@ -2,7 +2,7 @@
     <div>
         <el-breadcrumb separator="/" class="mb30">
             <el-breadcrumb-item :to="{ path: '/layout/home' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item :to="{ path: '/layout/userlist' }">管理员列表页</el-breadcrumb-item>
+            <el-breadcrumb-item :to="{ path: '/layout/userlist' }">普通用户列表页</el-breadcrumb-item>
             <el-breadcrumb-item  v-if="isrevise">修改管理员</el-breadcrumb-item>
             <el-breadcrumb-item  v-else>添加管理员</el-breadcrumb-item>
         </el-breadcrumb>
@@ -72,7 +72,7 @@ import Uploadimg from '@/components/Uploadimg'
         methods:{
             // 添加新用户
             handleSubmit(){
-                this.$axios.post(`/admin/user`,this.formData).then( res => {
+                this.$axios.post(`/user/add`,this.formData).then( res => {
                     // console.log(res)
                     if(res.code ==200){
                         this.$message.success(res.msg)
@@ -87,14 +87,14 @@ import Uploadimg from '@/components/Uploadimg'
             // 获取用户信息，用于修改
             getdata(){
                 let {id} = this.$route.params
-                this.$axios.get(`/admin/user/${id}`).then(res => {
+                this.$axios.get(`/user/user/${id}`).then(res => {
                     this.formData = res.data
                 })
             },
             // 修改用户
             handlerevise(){
                 let {id} = this.$route.params
-                this.$axios.put(`/admin/user/${id}`,this.formData).then(res => {
+                this.$axios.put(`/user/user/${id}`,this.formData).then(res => {
                     if(res.code == 200){
                         setTimeout(() => {
                             this.$message.success(res.msg)
@@ -110,7 +110,7 @@ import Uploadimg from '@/components/Uploadimg'
         },
         computed:{
             isrevise(){
-                if(this.$route.meta.title == '修改管理员'){
+                if(this.$route.meta.title == '修改普通用户'){
                     this.getdata()
                     return true
                 }else{

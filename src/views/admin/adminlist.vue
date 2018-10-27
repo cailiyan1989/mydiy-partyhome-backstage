@@ -8,7 +8,7 @@
         <el-card>
 
             <el-table :data="formData" stripe style="width: 100%" align="center">
-            <el-table-column prop="username" label="姓名" width="120" align="center"/>
+            <el-table-column prop="username" label="用户名" width="120" align="center"/>
             <el-table-column prop="nicheng" label="昵称" width="180" align="center"/>
             <el-table-column label="头像" width="120" align="center" >
                 <template slot-scope="scope">
@@ -30,6 +30,15 @@
             </el-table-column>
         </el-table>
 
+        <el-pagination
+            background
+            class="page-ys"
+            layout="prev, pager, next"
+            @current-change="pageing"
+            :page-size="page.size"
+            :total="count">
+            </el-pagination>
+
         </el-card>
         
     </div>
@@ -41,18 +50,26 @@
             return{
                 formData:[],
                 count:'',
+                page:{
+                    pn:1,
+                    size:4,
+                },
+                count:1,
             }
         },
         methods:{
+            pageing(pn){ //翻页
+                this.page.pn = pn
+                this.getdata()
+            },
             getdata(){
-                this.$axios.get(`/admin/user`).then(res => {
-                    // console.log(res)
+                this.$axios.get(`/admin/user`,this.page).then(res => {
                     this.formData = res.data
                     this.count = res.count
                 })
             },
             handlelook(id){
-                this.$router.push(`/layout/reviseuser/${id}`)
+                this.$router.push(`/layout/reviseadmin/${id}`)
             },
             handledel(id){
                 this.$confirm('此操作将永久删除该用户, 是否继续?', '提示', {
