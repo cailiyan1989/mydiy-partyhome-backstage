@@ -21,6 +21,7 @@
                 </template>
             </el-table-column>
             <el-table-column prop="job" label="工作" width="180"  align="center"/>
+            <el-table-column prop="branchStatusName" label="所属支部" width="180"  align="center"/>
             <el-table-column prop="phone" label="电话" width="180" align="center"/>
             <el-table-column label="操作" width="180" align="center">
                 <template slot-scope="scope">
@@ -64,6 +65,24 @@
             },
             getdata(){
                 this.$axios.get(`/user/user`,this.page).then(res => {
+                   
+                    res.data.forEach(item => {
+                        let branchStatusName = ''
+                        switch(item.branchStatus){
+                            case 1:
+                                item.branchStatusName = '第一支队'
+                                break;
+                            case 2:
+                                item.branchStatusName = '第二支队'
+                                break;
+                            case 3:
+                                item.branchStatusName = '第三支队'
+                                break;
+                            default:
+                                item.branchStatusName = '第三支队'
+                                break;
+                        }
+                    })
                     this.formData = res.data
                     this.count = res.count
                 })
