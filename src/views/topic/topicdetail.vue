@@ -33,6 +33,14 @@
                     </div>
                 </div>
             </div>
+             <el-pagination
+            background
+            class="page-ys"
+            layout="prev, pager, next"
+            @current-change="pageing"
+            :page-size="page.size"
+            :total="count">
+            </el-pagination>
         </el-card>
     </div>
 </template>
@@ -44,20 +52,31 @@
                 topicData:{},
                 commonData:{},
                 isloading:true,
+                page:{
+                    pn:1,
+                    size:10,
+                },
+                count:1,
             }
         },
         methods:{
+            pageing(pn){ //翻页
+                this.page.pn = pn
+                this.getCommonData()
+            },
             getTopicaData(){
                 let {id} = this.$route.params
                 this.$axios.get(`/ddyj/topic/${id}`).then(res => {
                     this.topicData = res.data
-                    this.getCommonData(id)
+                    this.getCommonData()
                 })
             },
-            getCommonData(id){
-                this.$axios.get(`/ddyj/common/bytopic/${id}`).then(res => {
+            getCommonData(){
+                let {id} = this.$route.params
+                this.$axios.get(`/ddyj/common/bytopic/${id}`,this.page).then(res => {
                     this.commonData = res.data
                     this.isloading = false
+                    this.count = res.count;
                 })
             }
         },

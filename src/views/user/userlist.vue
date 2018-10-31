@@ -8,21 +8,21 @@
         <el-card>
 
             <el-table :data="formData" stripe style="width: 100%" align="center">
-            <el-table-column prop="username" label="用户名" width="120" align="center"/>
+            <el-table-column prop="username" label="用户名" width="110" align="center"/>
             <el-table-column prop="nicheng" label="昵称" width="180" align="center"/>
             <el-table-column label="头像" width="120" align="center" >
                 <template slot-scope="scope">
                     <img :src="scope.row.avatar" class="avatar-item" alt="">
                 </template>
             </el-table-column>
-            <el-table-column  label="性别" width="100" align="center">
+            <el-table-column  label="性别" width="80" align="center">
                 <template slot-scope="scope">
                     {{scope.row.sex == 0 ? '女' : '男'}}
                 </template>
             </el-table-column>
-            <el-table-column prop="job" label="工作" width="180"  align="center"/>
-            <el-table-column prop="branchStatusName" label="所属支部" width="180"  align="center"/>
-            <el-table-column prop="phone" label="电话" width="180" align="center"/>
+            <el-table-column prop="job" label="工作" width="140"  align="center"/>
+            <el-table-column prop="branchStatusName" label="所属支部" width="140"  align="center"/>
+            <el-table-column prop="phone" label="电话" width="140" align="center"/>
             <el-table-column label="操作" width="180" align="center">
                 <template slot-scope="scope">
                      <el-button @click="handlelook(scope.row._id)" type="primary" size="small">编辑</el-button>
