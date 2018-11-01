@@ -23,8 +23,8 @@
         data(){
             return{
                 formData:{
-                    username:'admin',
-                    password:'123456'
+                    username:'',
+                    password:''
                 }
             }
         },
