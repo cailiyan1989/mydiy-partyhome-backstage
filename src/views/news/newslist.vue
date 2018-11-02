@@ -79,6 +79,8 @@
                             if(res.code == 200){
                                 this.$message.success(res.msg);
                                 this.getData()
+                            }else if(res.code == 401){
+                                this.$message.warning(res.msg)
                             }
                         })
                     }).catch(() => {

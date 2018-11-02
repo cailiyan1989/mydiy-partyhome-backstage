@@ -119,29 +119,37 @@ import Uploadimg from '@/components/Uploadimg'
         },
         methods:{
             handleSubmit(){
-                this.$axios.post('/ddyj/swiper',this.formData).then(res => {
-                    if(res.code == 200){
-                        this.$message.success(res.msg)
-                        setTimeout(() => {
-                            this.$router.push(`/layout/swiperlist`)
-                        }, 500);
-                    }else{
-                        this.$message(res.msg)
-                    }
-                })
+                if(!this.formData.title||!this.formData.img||this.formData.newsId){
+                    this.$message.error('请输入关键信息')
+                }else{
+                    this.$axios.post('/ddyj/swiper',this.formData).then(res => {
+                        if(res.code == 200){
+                            this.$message.success(res.msg)
+                            setTimeout(() => {
+                                this.$router.push(`/layout/swiperlist`)
+                            }, 500);
+                        }else{
+                            this.$message(res.msg)
+                        }
+                    })
+                }
             },
             handlerevise(){
-                let {id} = this.$route.params;
-                this.$axios.put(`/ddyj/swiper/${id}`,this.formData).then(res => {
-                    if(res.code == 200){
-                        this.$message.success(res.msg)
-                        setTimeout(() => {
-                            this.$router.push('/layout/swiperlist')
-                        }, 500);
-                    }else{
-                        this.$message(res.msg)
-                    }
-                })
+                if(!this.formData.title||!this.formData.img||this.formData.newsId){
+                    this.$message.error('请输入关键信息')
+                }else{
+                    let {id} = this.$route.params;
+                    this.$axios.put(`/ddyj/swiper/${id}`,this.formData).then(res => {
+                        if(res.code == 200){
+                            this.$message.success(res.msg)
+                            setTimeout(() => {
+                                this.$router.push('/layout/swiperlist')
+                            }, 500);
+                        }else{
+                            this.$message(res.msg)
+                        }
+                    })
+                }
 
             },
             getCategoty(){
@@ -174,9 +182,11 @@ import Uploadimg from '@/components/Uploadimg'
                 let {id} = this.$route.params;
                 this.$axios.get(`/ddyj/swiper/${id}`).then(res => {
                     this.formData = res.data
-                    var nesId = res.data.newsId._id
-                    this.formData.newsId = nesId
-                    this.getReviseNew()
+                    if(res.data.newsId&&res.data.newsId._id){
+                        var nesId = res.data.newsId._id
+                        this.formData.newsId = nesId
+                        this.getReviseNew()
+                    }
                 })
                 
             },
@@ -204,6 +214,8 @@ import Uploadimg from '@/components/Uploadimg'
                         status:1,
                         sort:1
                     }
+                    this.selectNewitem = ''
+                    this.selectCateId = '' 
                     return false
                 }
             }

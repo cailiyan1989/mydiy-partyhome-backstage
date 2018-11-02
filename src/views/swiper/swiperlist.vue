@@ -65,6 +65,14 @@
             },
             getData(){
                 this.$axios.get(`/ddyj/swiper/all`,this.page).then(res => {
+                    res.data.map(item => {
+                        if(!item.newsId){
+                            item.newsId = {
+                                contentText : '该新闻已被删除',
+                                title : '该新闻已被删除'
+                            }
+                        }
+                    })
                     this.formData = res.data
                     this.count = res.count
                 })
